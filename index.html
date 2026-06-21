@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Black Steel — Staff Performance</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+  :root {
+    --bg-page: #F4F2EE;
+    --bg-card: #FFFFFF;
+    --bg-card-muted: #F1EFE8;
+    --border: #E2DFD6;
+    --text-primary: #21201C;
+    --text-secondary: #6B6962;
+    --text-tertiary: #9C9A91;
+    --accent: #185FA5;
+    --accent-bg: #E6F1FB;
+    --danger: #A32D2D;
+    --danger-bg: #FCEBEB;
+    --good: #3B6D11;
+    --good-bg: #EAF3DE;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: "SF Mono", "Roboto Mono", Consolas, Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+  header { margin-bottom: 1.25rem; }
+  header .eyebrow {
+    font-size: 12px; color: var(--text-tertiary); text-transform: uppercase;
+    letter-spacing: 0.04em; margin: 0 0 2px;
+  }
+  header h1 { font-size: 19px; font-weight: 500; margin: 0; }
+  select {
+    width: 100%; font-size: 16px; font-weight: 500; padding: 10px 12px;
+    border-radius: var(--radius-md); border: 1px solid var(--border);
+    background: var(--bg-card); color: var(--text-primary); margin-bottom: 12px;
+    -webkit-appearance: none; appearance: none;
+  }
+  .tabs { display: flex; gap: 6px; margin-bottom: 1.25rem; }
+  .tabs button {
+    flex: 1; font-size: 14px; padding: 9px 0; border-radius: var(--radius-md);
+    border: 1px solid var(--border); background: var(--bg-card); color: var(--text-secondary);
+  }
+  .tabs button.active { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); font-weight: 500; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .card {
+    background: var(--bg-card-muted); border-radius: var(--radius-md); padding: 14px;
+  }
+  .card .label { font-size: 12.5px; color: var(--text-secondary); margin: 0 0 4px; }
+  .card .value { font-size: 22px; font-weight: 500; margin: 0; font-family: var(--font-mono); }
+  .card .sub { font-size: 11.5px; color: var(--text-tertiary); margin: 4px 0 0; }
+  .note {
+    font-size: 12.5px; color: var(--text-tertiary); margin: 10px 0 0;
+    display: flex; align-items: center; gap: 6px;
+  }
+  h3 { font-size: 15px; font-weight: 500; margin: 1.75rem 0 0.75rem; }
+  .barrow { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .barrow .name { font-size: 13px; width: 78px; flex-shrink: 0; }
+  .barrow .track {
+    flex: 1; background: var(--bg-card-muted); border-radius: 6px; height: 16px;
+    overflow: hidden; position: relative;
+  }
+  .barrow .fill { background: var(--accent); height: 100%; border-radius: 6px; }
+  .barrow .fill.danger { background: var(--danger); }
+  .barrow .val { font-size: 12.5px; font-family: var(--font-mono); width: 58px; text-align: right; flex-shrink: 0; }
+  footer { margin-top: 2rem; font-size: 11.5px; color: var(--text-tertiary); text-align: center; }
+  .incentive-box { background: var(--bg-card-muted); border-radius: var(--radius-md); padding: 14px; }
+  .incentive-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .incentive-label { font-size: 13px; color: var(--text-secondary); }
+  .incentive-pct { font-size: 13px; font-weight: 500; font-family: var(--font-mono); }
+  .incentive-amount { font-size: 20px; font-weight: 500; font-family: var(--font-mono); }
+  .incentive-of { font-size: 12px; color: var(--text-tertiary); font-weight: 400; }
+  .danger-text { color: var(--danger) !important; }
+  .track { background: var(--bg-card); border-radius: 6px; height: 16px; overflow: hidden; position: relative; }
+  .track .fill { background: var(--accent); height: 100%; border-radius: 6px; }
+  .track .fill.danger { background: var(--danger); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">The Black Steel</p>
+    <h1>Staff performance — May 2026</h1>
+  </header>
+
+  <select id="person-select"></select>
+
+  <div class="tabs">
+    <button id="tab-mine" class="active">My performance</button>
+    <button id="tab-team">Team view</button>
+  </div>
+
+  <div id="mine-view"></div>
+  <div id="team-view" style="display:none;"></div>
+
+  <footer>Updated monthly · Points from Zoho Projects · Attendance from PagarBook</footer>
+</div>
+
+<script>
+const data = [
+  {"name":"Arjun","points":1912,"days_present":26,"days_absent":0,"days_leave":0,"late_days":1,"late_minutes":51,"ot_minutes":182,"attendance_pct":0.9615384615,"incentive":500.0,"half_day_deduction":false},
+  {"name":"Jyoti","points":1450,"days_present":26,"days_absent":0,"days_leave":0,"late_days":8,"late_minutes":668,"ot_minutes":344,"attendance_pct":0.6923076923,"incentive":0.0,"half_day_deduction":true},
+  {"name":"Somi","points":1310,"days_present":23,"days_absent":3,"days_leave":0,"late_days":5,"late_minutes":70,"ot_minutes":344,"attendance_pct":0.7826086957,"incentive":391.3,"half_day_deduction":true},
+  {"name":"Kiran (CRM)","points":990,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"attendance_pct":null,"incentive":null,"half_day_deduction":null},
+  {"name":"Kiran (Inv)","points":794,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"attendance_pct":null,"incentive":null,"half_day_deduction":null},
+  {"name":"Suti","points":692,"days_present":25,"days_absent":1,"days_leave":0,"late_days":4,"late_minutes":658,"ot_minutes":300,"attendance_pct":0.84,"incentive":420.0,"half_day_deduction":true},
+  {"name":"Sushil","points":436,"days_present":20,"days_absent":6,"days_leave":0,"late_days":2,"late_minutes":54,"ot_minutes":85,"attendance_pct":0.9,"incentive":500.0,"half_day_deduction":false},
+  {"name":"Hari Om","points":300,"days_present":24,"days_absent":0,"days_leave":2,"late_days":2,"late_minutes":48,"ot_minutes":212,"attendance_pct":0.9166666667,"incentive":500.0,"half_day_deduction":false},
+  {"name":"Alex Peter","points":-10,"days_present":22,"days_absent":2,"days_leave":2,"late_days":2,"late_minutes":56,"ot_minutes":7,"attendance_pct":0.9090909091,"incentive":500.0,"half_day_deduction":false},
+  {"name":"Ritu Barwal","points":null,"days_present":25,"days_absent":0,"days_leave":0,"late_days":5,"late_minutes":73,"ot_minutes":142,"attendance_pct":0.8,"incentive":400.0,"half_day_deduction":true},
+  {"name":"Chandan Singh","points":null,"days_present":20,"days_absent":4,"days_leave":2,"late_days":5,"late_minutes":577,"ot_minutes":229,"attendance_pct":0.75,"incentive":375.0,"half_day_deduction":true}
+];
+
+const sel = document.getElementById('person-select');
+data.forEach(d => {
+  const opt = document.createElement('option');
+  opt.value = d.name;
+  opt.textContent = d.name;
+  sel.appendChild(opt);
+});
+
+function fmtMin(m) {
+  if (m === null || m === undefined) return '–';
+  const h = Math.floor(m / 60), r = Math.round(m % 60);
+  return h > 0 ? h + 'h ' + r + 'm' : r + 'm';
+}
+
+function rankLabel(arr, key, name, higherIsBetter) {
+  const valid = arr.filter(d => d[key] !== null);
+  const sorted = [...valid].sort((a, b) => higherIsBetter ? b[key] - a[key] : a[key] - b[key]);
+  const idx = sorted.findIndex(d => d.name === name);
+  if (idx === -1) return null;
+  return (idx + 1) + ' of ' + sorted.length;
+}
+
+function renderMine(name) {
+  const d = data.find(x => x.name === name);
+  const container = document.getElementById('mine-view');
+  const hasPoints = d.points !== null;
+  const hasAttendance = d.days_present !== null;
+
+  let cards = '';
+  if (hasPoints) {
+    const rank = rankLabel(data, 'points', name, true);
+    cards += '<div class="card"><p class="label">Points earned</p>' +
+      '<p class="value">' + d.points.toLocaleString() + '</p>' +
+      (rank ? '<p class="sub">Rank ' + rank + '</p>' : '') + '</div>';
+  }
+  if (hasAttendance) {
+    cards += '<div class="card"><p class="label">Days present</p>' +
+      '<p class="value">' + d.days_present + '</p>' +
+      '<p class="sub">' + d.days_absent + ' absent &middot; ' + d.days_leave + ' leave</p></div>';
+    cards += '<div class="card"><p class="label">Late arrivals</p>' +
+      '<p class="value"' + (d.late_days > 3 ? ' style="color:var(--danger)"' : '') + '>' + d.late_days + '</p>' +
+      '<p class="sub">' + fmtMin(d.late_minutes) + ' total</p></div>';
+    cards += '<div class="card"><p class="label">Overtime logged</p>' +
+      '<p class="value">' + fmtMin(d.ot_minutes) + '</p>' +
+      '<p class="sub">past 6:30pm</p></div>';
+  }
+
+  let notes = '';
+  if (!hasPoints) notes += '<p class="note"><i class="ti ti-info-circle"></i>Points aren\'t tracked for this role.</p>';
+  if (!hasAttendance) notes += '<p class="note"><i class="ti ti-info-circle"></i>Attendance isn\'t tracked for this role.</p>';
+
+  let incentiveBlock = '';
+  if (hasAttendance && d.incentive !== null) {
+    const pct = Math.round(d.attendance_pct * 1000) / 10;
+    const fillPct = Math.max(2, Math.round((d.incentive / 500) * 100));
+    incentiveBlock = '<h3>Monthly incentive</h3>' +
+      '<div class="incentive-box">' +
+      '<div class="incentive-row">' +
+      '<span class="incentive-label">Attendance score</span>' +
+      '<span class="incentive-pct">' + pct + '%</span>' +
+      '</div>' +
+      '<div class="track" style="height:20px; margin-bottom:10px;">' +
+      '<div class="fill' + (d.incentive === 0 ? ' danger' : '') + '" style="width:' + fillPct + '%"></div>' +
+      '</div>' +
+      '<div class="incentive-row">' +
+      '<span class="incentive-label">Incentive earned</span>' +
+      '<span class="incentive-amount' + (d.incentive === 0 ? ' danger-text' : '') + '">&#8377;' + d.incentive.toLocaleString() + ' <span class="incentive-of">of &#8377;500</span></span>' +
+      '</div>' +
+      '</div>';
+    if (d.half_day_deduction) {
+      incentiveBlock += '<p class="note danger-text"><i class="ti ti-alert-triangle"></i>4+ late arrivals this month &mdash; half-day pay deduction applies.</p>';
+    }
+  }
+
+  container.innerHTML = '<div class="grid">' + cards + '</div>' + notes + incentiveBlock;
+}
+
+function renderTeam() {
+  const container = document.getElementById('team-view');
+  const byPoints = [...data].filter(d => d.points !== null).sort((a, b) => b.points - a.points);
+  const byLate = [...data].filter(d => d.late_days !== null).sort((a, b) => b.late_days - a.late_days);
+
+  function bar(label, value, max, suffix, danger) {
+    const pct = Math.max(2, Math.round((value / max) * 100));
+    return '<div class="barrow"><span class="name">' + label + '</span>' +
+      '<div class="track"><div class="fill' + (danger ? ' danger' : '') + '" style="width:' + pct + '%"></div></div>' +
+      '<span class="val">' + suffix + '</span></div>';
+  }
+
+  const maxPts = Math.max(...byPoints.map(d => d.points));
+  const maxLate = Math.max(...byLate.map(d => d.late_days), 1);
+
+  container.innerHTML =
+    '<h3>Points, May</h3>' +
+    byPoints.map(d => bar(d.name, Math.max(d.points, 0), maxPts, d.points.toLocaleString())).join('') +
+    '<h3>Late days, May</h3>' +
+    byLate.map(d => bar(d.name, d.late_days, maxLate, d.late_days + ' days', d.late_days > 3)).join('');
+}
+
+function showMine() {
+  document.getElementById('mine-view').style.display = '';
+  document.getElementById('team-view').style.display = 'none';
+  document.getElementById('tab-mine').classList.add('active');
+  document.getElementById('tab-team').classList.remove('active');
+}
+function showTeam() {
+  document.getElementById('mine-view').style.display = 'none';
+  document.getElementById('team-view').style.display = '';
+  document.getElementById('tab-mine').classList.remove('active');
+  document.getElementById('tab-team').classList.add('active');
+  renderTeam();
+}
+
+sel.addEventListener('change', () => renderMine(sel.value));
+document.getElementById('tab-mine').addEventListener('click', showMine);
+document.getElementById('tab-team').addEventListener('click', showTeam);
+
+renderMine(data[0].name);
+</script>
+</body>
+</html>

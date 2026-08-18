@@ -113,11 +113,13 @@
     <button id="tab-mine" class="active">My performance</button>
     <button id="tab-team">Team view</button>
     <button id="tab-teams">Teams</button>
+    <button id="tab-top">Top performer</button>
   </div>
 
   <div id="mine-view"></div>
   <div id="team-view" style="display:none;"></div>
   <div id="teams-view" style="display:none;"></div>
+  <div id="top-view" style="display:none;"></div>
 
   <footer>Updated monthly · Points from Zoho Projects · Attendance from PagarBook · Behaviour from monthly staff survey</footer>
 </div>
@@ -146,13 +148,26 @@ const monthlyData = {
   {"name":"Alex Peter","is_training":false,"points":500,"days_present":20,"days_absent":2,"days_leave":4,"late_days":0,"late_minutes":0.0,"ot_minutes":10,"early_departure_minutes":20,"attendance_pct":100.0,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":95.5,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0},
   {"name":"Ritu Barwal","is_training":false,"points":null,"days_present":21,"days_absent":3,"days_leave":2,"late_days":3,"late_minutes":11.0,"ot_minutes":58,"early_departure_minutes":null,"attendance_pct":85.7,"attendance_incentive":428.5,"half_days":1,"deduction_amount":null,"behaviour_pct":96.9,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":928.5},
   {"name":"Chandan Singh","is_training":false,"points":null,"days_present":25,"days_absent":1,"days_leave":0,"late_days":0,"late_minutes":0.0,"ot_minutes":177,"early_departure_minutes":88,"attendance_pct":100.0,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":96.4,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0},
-  {"name":"Vasundhara","is_training":true,"points":null,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"early_departure_minutes":null,"attendance_pct":null,"attendance_incentive":null,"half_days":0,"deduction_amount":null,"behaviour_pct":null,"behaviour_incentive":null,"attendance_note":"Under training \u2014 not yet eligible for points or incentives.","total_incentive":null}]
+  {"name":"Vasundhara","is_training":true,"points":null,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"early_departure_minutes":null,"attendance_pct":null,"attendance_incentive":null,"half_days":0,"deduction_amount":null,"behaviour_pct":null,"behaviour_incentive":null,"attendance_note":"Under training \u2014 not yet eligible for points or incentives.","total_incentive":null}],
+  "2026-07": [
+  {"name":"Arjun","is_training":false,"points":1986,"days_present":24,"days_absent":2,"days_leave":1,"late_days":7,"late_minutes":27,"ot_minutes":122,"early_departure_minutes":204,"attendance_pct":70.8,"attendance_incentive":354.17,"half_days":2,"deduction_amount":500,"behaviour_pct":94.4,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":854.17},
+  {"name":"Jyoti","is_training":false,"points":1080,"days_present":27,"days_absent":0,"days_leave":0,"late_days":8,"late_minutes":134,"ot_minutes":157,"early_departure_minutes":203,"attendance_pct":70.4,"attendance_incentive":351.85,"half_days":2,"deduction_amount":500,"behaviour_pct":91.2,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":851.85},
+  {"name":"Somi","is_training":false,"points":500,"days_present":24,"days_absent":2,"days_leave":1,"late_days":2,"late_minutes":3,"ot_minutes":157,"attendance_pct":91.7,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":89.4,"behaviour_incentive":446.88,"attendance_note":null,"total_incentive":946.88},
+  {"name":"Kiran","is_training":false,"points":1316,"days_present":26,"days_absent":0,"days_leave":1,"late_days":0,"late_minutes":0,"ot_minutes":166,"attendance_pct":100.0,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":92.5,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0},
+  {"name":"Suti","is_training":false,"points":748,"days_present":26,"days_absent":0,"days_leave":1,"late_days":2,"late_minutes":13,"ot_minutes":159,"early_departure_minutes":238,"attendance_pct":92.3,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":91.2,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0},
+  {"name":"Sushil","is_training":false,"points":86,"days_present":23,"days_absent":3,"days_leave":1,"late_days":4,"late_minutes":16,"ot_minutes":156,"early_departure_minutes":44,"attendance_pct":82.6,"attendance_incentive":413.04,"half_days":1,"deduction_amount":250,"behaviour_pct":91.9,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":913.04},
+  {"name":"Hari Om","is_training":false,"points":380,"days_present":22,"days_absent":2,"days_leave":3,"late_days":1,"late_minutes":37,"ot_minutes":144,"attendance_pct":95.5,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":92.5,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0},
+  {"name":"Alex Peter","is_training":false,"points":500,"days_present":25,"days_absent":1,"days_leave":1,"late_days":3,"late_minutes":37,"ot_minutes":104,"early_departure_minutes":30,"attendance_pct":88.0,"attendance_incentive":440.0,"half_days":1,"deduction_amount":250,"behaviour_pct":95.6,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":940.0},
+  {"name":"Ritu Barwal","is_training":false,"points":null,"days_present":24,"days_absent":0,"days_leave":3,"late_days":5,"late_minutes":127,"ot_minutes":89,"attendance_pct":79.2,"attendance_incentive":395.83,"half_days":1,"deduction_amount":350,"behaviour_pct":98.8,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":895.83},
+  {"name":"Chandan Singh","is_training":false,"points":null,"days_present":27,"days_absent":0,"days_leave":0,"late_days":5,"late_minutes":29,"ot_minutes":247,"attendance_pct":81.5,"attendance_incentive":407.41,"half_days":1,"deduction_amount":350,"behaviour_pct":91.2,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":907.41},
+  {"name":"Vasundhara","is_training":true,"points":null,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"attendance_pct":null,"attendance_incentive":null,"half_days":0,"deduction_amount":null,"behaviour_pct":null,"behaviour_incentive":null,"attendance_note":"Under training \u2014 not yet eligible for points or incentives.","total_incentive":null},
+  {"name":"Shivani","is_training":true,"points":null,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"attendance_pct":null,"attendance_incentive":null,"half_days":0,"deduction_amount":null,"behaviour_pct":null,"behaviour_incentive":null,"attendance_note":"Under training \u2014 not yet eligible for points or incentives.","total_incentive":null}]
 };
 
-const monthLabels = { "2026-05": "May 2026", "2026-06": "Jun 2026" };
+const monthLabels = { "2026-05": "May 2026", "2026-06": "Jun 2026", "2026-07": "Jul 2026" };
 
 const teams = [
-  { name: "Sales & Marketing", leader: "Ritu Barwal", members: ["Jyoti", "Alex Peter", "Kiran"] },
+  { name: "Sales & Marketing", leader: "Ritu Barwal", members: ["Jyoti", "Alex Peter", "Kiran", "Shivani"] },
   { name: "Operations", leader: "Chandan Singh", members: ["Arjun", "Somi", "Suti", "Sushil", "Vasundhara", "Hari Om"] },
 ];
 const monthKeys = Object.keys(monthlyData).sort();
@@ -203,7 +218,8 @@ function getHistory(name) {
     const d = monthlyData[k].find(x => x.name === name);
     if (!d || d.is_training) return { month: k, total: null };
     const pts = d.points !== null && d.points !== undefined ? d.points : 0;
-    const grandTotal = Math.round((pts + d.total_incentive) * 100) / 100;
+    const ded = d.deduction_amount || 0;
+    const grandTotal = Math.round((pts + d.total_incentive - ded) * 100) / 100;
     return { month: k, total: grandTotal };
   }).filter(h => h.total !== null);
 }
@@ -230,11 +246,13 @@ function renderMine(name) {
 
   if (d.total_incentive !== null && d.total_incentive !== undefined) {
     const pts = d.points !== null && d.points !== undefined ? d.points : 0;
-    const grandTotal = Math.round((pts + d.total_incentive) * 100) / 100;
-    html += '<div class="total-box"><span class="label">Total earned (points + incentive)</span>' +
+    const ded = d.deduction_amount || 0;
+    const grandTotal = Math.round((pts + d.total_incentive - ded) * 100) / 100;
+    html += '<div class="total-box"><span class="label">Total earned (points + incentive' + (ded > 0 ? ' &minus; deduction' : '') + ')</span>' +
       '<span class="amount">' + grandTotal.toLocaleString() + '</span></div>' +
       '<p class="note" style="margin-top:-8px; margin-bottom:16px;"><i class="ti ti-info-circle"></i>' +
-      (pts !== 0 ? pts.toLocaleString() + ' points + ' : '') + '&#8377;' + d.total_incentive.toLocaleString() + ' incentive (attendance + behaviour)</p>';
+      (pts !== 0 ? pts.toLocaleString() + ' points + ' : '') + '&#8377;' + d.total_incentive.toLocaleString() + ' incentive' +
+      (ded > 0 ? ' &minus; &#8377;' + ded.toLocaleString() + ' half-day deduction' : '') + '</p>';
   }
 
   let cards = '';
@@ -360,27 +378,79 @@ function showMine() {
   document.getElementById('mine-view').style.display = '';
   document.getElementById('team-view').style.display = 'none';
   document.getElementById('teams-view').style.display = 'none';
+  document.getElementById('top-view').style.display = 'none';
   document.getElementById('tab-mine').classList.add('active');
   document.getElementById('tab-team').classList.remove('active');
   document.getElementById('tab-teams').classList.remove('active');
+  document.getElementById('tab-top').classList.remove('active');
 }
 function showTeam() {
   document.getElementById('mine-view').style.display = 'none';
   document.getElementById('team-view').style.display = '';
   document.getElementById('teams-view').style.display = 'none';
+  document.getElementById('top-view').style.display = 'none';
   document.getElementById('tab-mine').classList.remove('active');
   document.getElementById('tab-team').classList.add('active');
   document.getElementById('tab-teams').classList.remove('active');
+  document.getElementById('tab-top').classList.remove('active');
   renderTeam();
 }
 function showTeams() {
   document.getElementById('mine-view').style.display = 'none';
   document.getElementById('team-view').style.display = 'none';
   document.getElementById('teams-view').style.display = '';
+  document.getElementById('top-view').style.display = 'none';
   document.getElementById('tab-mine').classList.remove('active');
   document.getElementById('tab-team').classList.remove('active');
   document.getElementById('tab-teams').classList.add('active');
+  document.getElementById('tab-top').classList.remove('active');
   renderTeams();
+}
+function showTop() {
+  document.getElementById('mine-view').style.display = 'none';
+  document.getElementById('team-view').style.display = 'none';
+  document.getElementById('teams-view').style.display = 'none';
+  document.getElementById('top-view').style.display = '';
+  document.getElementById('tab-mine').classList.remove('active');
+  document.getElementById('tab-team').classList.remove('active');
+  document.getElementById('tab-teams').classList.remove('active');
+  document.getElementById('tab-top').classList.add('active');
+  renderTop();
+}
+
+function grandTotalFor(d) {
+  if (!d || d.is_training || d.total_incentive === null || d.total_incentive === undefined) return null;
+  const pts = d.points !== null && d.points !== undefined ? d.points : 0;
+  const ded = d.deduction_amount || 0;
+  return Math.round((pts + d.total_incentive - ded) * 100) / 100;
+}
+
+function renderTop() {
+  const container = document.getElementById('top-view');
+  let html = '<h3 style="margin-top:0;">Employee of the Month</h3>' +
+    '<p class="note" style="margin:0 0 16px;"><i class="ti ti-info-circle"></i>Highest total earned (points + incentive &minus; deduction) each month.</p>';
+
+  monthKeys.forEach(k => {
+    const data = monthlyData[k];
+    const scored = data.map(d => ({ d, total: grandTotalFor(d) })).filter(x => x.total !== null);
+    html += '<div class="incentive-box" style="margin-bottom:14px;">' +
+      '<div class="incentive-row"><span class="incentive-label">' + (monthLabels[k] || k) + '</span></div>';
+    if (scored.length === 0) {
+      html += '<p class="note" style="margin:0;">No eligible data.</p></div>';
+      return;
+    }
+    scored.sort((a, b) => b.total - a.total);
+    const winner = scored[0];
+    html += '<div class="incentive-row" style="align-items:center;">' +
+      '<span style="font-size:17px; font-weight:600;"><i class="ti ti-trophy" style="color:#C9A227; margin-right:6px; vertical-align:-2px;"></i>' + winner.d.name + '</span>' +
+      '<span class="incentive-amount">&#8377;' + winner.total.toLocaleString() + '</span></div>';
+    if (scored.length > 1) {
+      html += '<p class="note" style="margin:8px 0 0;">Runner-up: ' + scored[1].d.name + ' &mdash; &#8377;' + scored[1].total.toLocaleString() + '</p>';
+    }
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
 }
 
 function renderTeams() {
@@ -432,6 +502,7 @@ sel.addEventListener('change', () => renderMine(sel.value));
 document.getElementById('tab-mine').addEventListener('click', showMine);
 document.getElementById('tab-team').addEventListener('click', showTeam);
 document.getElementById('tab-teams').addEventListener('click', showTeams);
+document.getElementById('tab-top').addEventListener('click', showTop);
 
 populatePeople();
 renderMine(sel.value);

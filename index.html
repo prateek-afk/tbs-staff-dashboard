@@ -94,6 +94,23 @@
   .total-box .amount { font-size: 26px; font-weight: 600; font-family: var(--font-mono); color: var(--accent); }
   .month-compare-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .month-compare-row .mlabel { font-size: 13px; width: 56px; flex-shrink: 0; color: var(--text-secondary); }
+  .training-wrap { position: relative; overflow: hidden; }
+  .training-wrap .watermark {
+    position: absolute; left: -20%; top: 0; width: 140%; height: 100%;
+    display: flex; flex-direction: column; justify-content: space-evenly;
+    transform: rotate(-16deg); pointer-events: none; z-index: 0;
+  }
+  .training-wrap .watermark span {
+    font-size: 21px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--text-tertiary); opacity: 0.16; white-space: nowrap; font-family: var(--font-sans);
+  }
+  .training-wrap > .training-content { position: relative; z-index: 1; }
+  .supervisor-box {
+    background: var(--good-bg); border-radius: var(--radius-md); padding: 14px; margin-bottom: 14px;
+  }
+  .supervisor-box .label { font-size: 12.5px; color: var(--good); font-weight: 600; margin: 0 0 4px; }
+  .supervisor-box .amount { font-size: 20px; font-weight: 600; font-family: var(--font-mono); color: var(--good); }
+  .supervisor-box .note { font-size: 12.5px; color: var(--text-secondary); margin: 6px 0 0; }
 </style>
 </head>
 <body>
@@ -187,10 +204,23 @@ const monthlyData = {
   {"name":"Ritu Barwal","is_training":false,"points":null,"days_present":20,"days_absent":0,"days_leave":5,"late_days":2,"late_minutes":24,"ot_minutes":21,"early_departure_minutes":167,"attendance_pct":90.0,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":98.9,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0,"monthly_salary":28000,"ot_pay":-283.89},
   {"name":"Chandan Singh","is_training":false,"points":null,"days_present":22,"days_absent":0,"days_leave":3,"late_days":4,"late_minutes":10,"ot_minutes":53,"attendance_pct":81.8,"attendance_incentive":409.09,"half_days":1,"deduction_amount":350,"behaviour_pct":94.9,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":909.09,"monthly_salary":21000,"ot_pay":77.29},
   {"name":"Shivani","is_training":true,"points":null,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"attendance_pct":null,"attendance_incentive":null,"half_days":0,"deduction_amount":null,"behaviour_pct":94.9,"behaviour_incentive":null,"attendance_note":"Under training \u2014 not yet eligible for points or incentives.","total_incentive":null},
-  {"name":"Mansub","is_training":true,"points":null,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"attendance_pct":null,"attendance_incentive":null,"half_days":0,"deduction_amount":null,"behaviour_pct":93.8,"behaviour_incentive":null,"attendance_note":"New hire, under training \u2014 attendance and points data not yet available. Not yet eligible for incentives.","total_incentive":null}]
+  {"name":"Mansub","is_training":true,"points":null,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"attendance_pct":null,"attendance_incentive":null,"half_days":0,"deduction_amount":null,"behaviour_pct":93.8,"behaviour_incentive":null,"attendance_note":"New hire, under training \u2014 attendance and points data not yet available. Not yet eligible for incentives.","total_incentive":null}],
+  "2026-10": [
+  {"name":"Arjun","is_training":false,"points":590,"days_present":12,"days_absent":0,"days_leave":15,"late_days":1,"late_minutes":20,"ot_minutes":47,"attendance_pct":91.7,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":97.9,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0,"monthly_salary":15000,"ot_pay":48.96},
+  {"name":"Jyoti","is_training":false,"points":1130,"days_present":19,"days_absent":3,"days_leave":4,"late_days":4,"late_minutes":21,"ot_minutes":85,"early_departure_minutes":177,"attendance_pct":78.9,"attendance_incentive":394.74,"half_days":1,"deduction_amount":250,"behaviour_pct":96.5,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":894.74,"monthly_salary":15000,"ot_pay":-95.83},
+  {"name":"Somi","is_training":false,"points":512,"days_present":23,"days_absent":2,"days_leave":1,"late_days":7,"late_minutes":55,"ot_minutes":91,"early_departure_minutes":60,"attendance_pct":69.6,"attendance_incentive":0.0,"half_days":2,"deduction_amount":516,"behaviour_pct":94.4,"behaviour_incentive":0.0,"attendance_note":"Attendance fell below the 70% floor this month, so no incentive applies at all (attendance or behaviour) — confirmed by Prateek, Nov 2026. OT pay and Zoho points are unaffected.","total_incentive":0.0,"monthly_salary":15000,"ot_pay":32.29},
+  {"name":"Kiran","is_training":false,"points":124,"days_present":24,"days_absent":0,"days_leave":2,"late_days":0,"late_minutes":0,"ot_minutes":154,"early_departure_minutes":112,"attendance_pct":100.0,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":92.4,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0,"monthly_salary":15000,"ot_pay":43.75},
+  {"name":"Suti","is_training":false,"points":994,"days_present":25,"days_absent":0,"days_leave":1,"late_days":2,"late_minutes":109,"ot_minutes":126,"early_departure_minutes":60,"attendance_pct":92.0,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":95.1,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0,"monthly_salary":15000,"ot_pay":68.75},
+  {"name":"Sushil","is_training":false,"points":1024,"days_present":24,"days_absent":0,"days_leave":2,"late_days":0,"late_minutes":0,"ot_minutes":216,"early_departure_minutes":380,"attendance_pct":100.0,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":95.1,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":1000.0,"monthly_salary":15000,"ot_pay":-170.83},
+  {"name":"Hari Om","is_training":false,"points":420,"days_present":25,"days_absent":0,"days_leave":1,"late_days":2,"late_minutes":207,"ot_minutes":137,"early_departure_minutes":518,"attendance_pct":92.0,"attendance_incentive":500.0,"half_days":0,"deduction_amount":null,"behaviour_pct":96.9,"behaviour_incentive":500.0,"attendance_note":"October Zoho points are 0 \u2014 the 420 shown is a one-time correction folded in for September, whose true Zoho points (420) were confirmed after September had already been paid out at the originally-recorded 208. One of three October early departures (31 Oct, 112 min) was excluded from the OT/early-departure calc per Prateek, treated as a one-off office visit; the other two (10 Oct, 188 min and 28 Oct, 330 min) are included as normal.","total_incentive":1000.0,"monthly_salary":15000,"ot_pay":-396.88},
+  {"name":"Alex Peter","is_training":false,"points":10,"days_present":23,"days_absent":1,"days_leave":3,"late_days":5,"late_minutes":32,"ot_minutes":56,"early_departure_minutes":333,"attendance_pct":78.3,"attendance_incentive":391.3,"half_days":1,"deduction_amount":250,"behaviour_pct":98.6,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":891.3,"monthly_salary":15000,"ot_pay":-288.54},
+  {"name":"Ritu Barwal","is_training":false,"points":null,"days_present":25,"days_absent":0,"days_leave":1,"late_days":3,"late_minutes":7,"ot_minutes":69,"early_departure_minutes":105,"attendance_pct":88.0,"attendance_incentive":440.0,"half_days":1,"deduction_amount":350,"behaviour_pct":99.4,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":940.0,"monthly_salary":28000,"ot_pay":-70.0},
+  {"name":"Chandan Singh","is_training":false,"points":null,"days_present":25,"days_absent":0,"days_leave":1,"late_days":4,"late_minutes":31,"ot_minutes":217,"early_departure_minutes":206,"attendance_pct":84.0,"attendance_incentive":420.0,"half_days":1,"deduction_amount":350,"behaviour_pct":94.4,"behaviour_incentive":500.0,"attendance_note":null,"total_incentive":920.0,"monthly_salary":21000,"ot_pay":16.04},
+  {"name":"Shivani","is_training":true,"points":22,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"attendance_pct":null,"attendance_incentive":null,"half_days":0,"deduction_amount":null,"behaviour_pct":96.5,"behaviour_incentive":null,"attendance_note":"Under training \u2014 not yet eligible for points or incentives. Zoho points now shown informationally (from Oct 2026) so Ritu Barwal can assess progress.","total_incentive":null},
+  {"name":"Mansub","is_training":true,"points":1942,"days_present":null,"days_absent":null,"days_leave":null,"late_days":null,"late_minutes":null,"ot_minutes":null,"attendance_pct":null,"attendance_incentive":null,"half_days":0,"deduction_amount":null,"behaviour_pct":96.2,"behaviour_incentive":null,"attendance_note":"Under training \u2014 not yet eligible for points or incentives. Now has a full October attendance file on record, but Prateek confirmed (Nov 2026) he stays on the training track for October. Zoho points now shown informationally (from Oct 2026) so Chandan Singh can assess progress.","total_incentive":null}]
 };
 
-const monthLabels = { "2026-05": "May 2026", "2026-06": "Jun 2026", "2026-07": "Jul 2026", "2026-08": "Aug 2026", "2026-09": "Sep 2026" };
+const monthLabels = { "2026-05": "May 2026", "2026-06": "Jun 2026", "2026-07": "Jul 2026", "2026-08": "Aug 2026", "2026-09": "Sep 2026", "2026-10": "Oct 2026" };
 
 const teams = [
   { name: "Sales & Marketing", leader: "Ritu Barwal", members: ["Jyoti", "Alex Peter", "Kiran", "Shivani"] },
@@ -246,7 +276,8 @@ function getHistory(name) {
     const pts = d.points !== null && d.points !== undefined ? d.points : 0;
     const ded = d.deduction_amount || 0;
     const otPay = d.ot_pay || 0;
-    const grandTotal = Math.round((pts + d.total_incentive + otPay - ded) * 100) / 100;
+    const supInc = d.supervisor_incentive || 0;
+    const grandTotal = Math.round((pts + d.total_incentive + otPay - ded + supInc) * 100) / 100;
     return { month: k, total: grandTotal };
   }).filter(h => h.total !== null);
 }
@@ -352,13 +383,18 @@ function renderMine(name) {
 
   if (d.is_training) {
     const hasBeh = d.behaviour_pct !== null && d.behaviour_pct !== undefined;
+    const hasPts = d.points !== null && d.points !== undefined;
+    const watermarkLine = Array(6).fill('Under Training').join('&nbsp;&nbsp;•&nbsp;&nbsp;');
     container.innerHTML =
-      '<div style="background: var(--bg-card-muted); border-radius: var(--radius-lg); padding: 24px; text-align: center;">' +
+      '<div class="training-wrap" style="background: var(--bg-card-muted); border-radius: var(--radius-lg); padding: 24px; text-align: center;">' +
+      '<div class="watermark">' + Array(5).fill('<span>' + watermarkLine + '</span>').join('') + '</div>' +
+      '<div class="training-content">' +
       '<div style="display:inline-block; background: var(--accent-bg); color: var(--accent); font-size: 12.5px; font-weight: 600; letter-spacing: 0.03em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; margin-bottom: 14px;">' +
       '<i class="ti ti-school" style="vertical-align:-2px; margin-right:4px;"></i>Under Training</div>' +
       '<p style="font-size: 14px; color: var(--text-secondary); margin: 0; line-height: 1.5;">' + (d.attendance_note || 'Not yet eligible for points or incentives.') + '</p>' +
-      (hasBeh ? '<p style="font-size: 13px; color: var(--text-secondary); margin: 14px 0 0; padding-top:14px; border-top:1px solid var(--border);">Behaviour score so far: <strong style="color:var(--text-primary);">' + d.behaviour_pct + '%</strong> <span style="opacity:0.7;">(informational — no incentive while under training)</span></p>' : '') +
-      '</div>';
+      (hasPts ? '<p style="font-size: 13px; color: var(--text-secondary); margin: 14px 0 0; padding-top:14px; border-top:1px solid var(--border);">Zoho points so far: <strong style="color:var(--text-primary); font-family:var(--font-mono);">' + d.points.toLocaleString() + '</strong> <span style="opacity:0.7;">(informational — for the supervisor to assess progress, no incentive while under training)</span></p>' : '') +
+      (hasBeh ? '<p style="font-size: 13px; color: var(--text-secondary); margin: 10px 0 0;' + (hasPts ? '' : ' padding-top:14px; border-top:1px solid var(--border);') + '">Behaviour score so far: <strong style="color:var(--text-primary);">' + d.behaviour_pct + '%</strong> <span style="opacity:0.7;">(informational — no incentive while under training)</span></p>' : '') +
+      '</div></div>';
     return;
   }
   const hasPoints = d.points !== null;
@@ -367,26 +403,35 @@ function renderMine(name) {
 
   let html = '';
 
+  const hasSupervisorInc = d.supervisor_incentive !== null && d.supervisor_incentive !== undefined;
+  if (hasSupervisorInc) {
+    html += '<div class="supervisor-box"><p class="label"><i class="ti ti-users-group" style="vertical-align:-2px; margin-right:4px;"></i>Supervisor incentive</p>' +
+      '<p class="amount">&#8377;' + d.supervisor_incentive.toLocaleString() + '</p>' +
+      '<p class="note">' + (d.supervisor_note || 'Set by Prateek, based on how well the subordinate(s) under this person are performing.') + '</p></div>';
+  }
+
   if (d.total_incentive !== null && d.total_incentive !== undefined) {
     const pts = d.points !== null && d.points !== undefined ? d.points : 0;
     const ded = d.deduction_amount || 0;
     const otPay = d.ot_pay || 0;
-    const grandTotal = Math.round((pts + d.total_incentive + otPay - ded) * 100) / 100;
+    const supInc = d.supervisor_incentive || 0;
+    const grandTotal = Math.round((pts + d.total_incentive + otPay - ded + supInc) * 100) / 100;
     const otLabel = otPay > 0 ? ' + OT' : (otPay < 0 ? ' &minus; OT' : '');
     const otNote = otPay > 0
       ? ' + &#8377;' + otPay.toLocaleString() + ' OT'
       : (otPay < 0 ? ' <span class="danger-text">&minus; &#8377;' + Math.abs(otPay).toLocaleString() + ' OT</span>' : '');
-    html += '<div class="total-box"><span class="label">Total earned (points + incentive' + otLabel + (ded > 0 ? ' &minus; deduction' : '') + ')</span>' +
+    const supNote = supInc > 0 ? ' + &#8377;' + supInc.toLocaleString() + ' supervisor incentive' : '';
+    html += '<div class="total-box"><span class="label">Total earned (points + incentive' + otLabel + (supInc > 0 ? ' + supervisor' : '') + (ded > 0 ? ' &minus; deduction' : '') + ')</span>' +
       '<span class="amount">' + grandTotal.toLocaleString() + '</span></div>' +
       '<p class="note" style="margin-top:-8px; margin-bottom:16px;"><i class="ti ti-info-circle"></i>' +
       (pts !== 0 ? pts.toLocaleString() + ' points + ' : '') + '&#8377;' + d.total_incentive.toLocaleString() + ' incentive' +
-      otNote +
+      otNote + supNote +
       (ded > 0 ? ' &minus; &#8377;' + ded.toLocaleString() + ' half-day deduction' : '') + '</p>';
   }
 
   let cards = '';
   if (hasPoints) {
-    const rank = rankLabel(data, 'points', name, true);
+    const rank = rankLabel(data.filter(x => !x.is_training), 'points', name, true);
     cards += '<div class="card"><p class="label">Points earned</p>' +
       '<p class="value">' + d.points.toLocaleString() + '</p>' +
       (rank ? '<p class="sub">Rank ' + rank + '</p>' : '') + '</div>';
@@ -561,7 +606,8 @@ function grandTotalFor(d) {
   const pts = d.points !== null && d.points !== undefined ? d.points : 0;
   const ded = d.deduction_amount || 0;
   const otPay = d.ot_pay || 0;
-  return Math.round((pts + d.total_incentive + otPay - ded) * 100) / 100;
+  const supInc = d.supervisor_incentive || 0;
+  return Math.round((pts + d.total_incentive + otPay - ded + supInc) * 100) / 100;
 }
 
 function renderTop() {
@@ -619,7 +665,12 @@ function renderTeams() {
       const d = data.find(x => x.name === name);
       let rightSide = '\u2013';
       if (d) {
-        if (d.is_training) rightSide = '<span style="font-size:11.5px; background:var(--bg-card-muted); color:var(--text-secondary); padding:3px 8px; border-radius:999px;">Training</span>';
+        if (d.is_training) {
+          const trainingBadge = '<span style="font-size:11.5px; background:var(--bg-card-muted); color:var(--text-secondary); padding:3px 8px; border-radius:999px;">Training</span>';
+          rightSide = (d.points !== null && d.points !== undefined)
+            ? '<span style="display:flex; align-items:center; gap:6px;"><span style="font-family:var(--font-mono); font-size:13.5px; opacity:0.75;">' + d.points.toLocaleString() + '</span>' + trainingBadge + '</span>'
+            : trainingBadge;
+        }
         else if (d.points !== null && d.points !== undefined) rightSide = '<span style="font-family:var(--font-mono); font-size:13.5px;">' + d.points.toLocaleString() + '</span>';
       }
       html += '<div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg-card-muted); border-radius:var(--radius-md); padding:10px 14px;">' +
